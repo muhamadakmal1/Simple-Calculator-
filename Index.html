@@ -1,0 +1,73 @@
+html>
+    <head>
+        <title>Simple Calculator</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="container">
+            <div class="calculator">
+                <form>
+                    <div class="display">
+                        <input type="text" id="screen" readonly>
+                    </div>
+                    <div>
+                        <input type="button" value="/" class="operator" onclick="addToScreen('/')">
+                        <input type="button" value="." class="operator" onclick="addToScreen('.')">
+                        <input type="button" value="DE" class="operator" onclick="deleteLast()">
+                        <input type="button" value="AC" class="operator" onclick="clearScreen()">
+                    </div>
+                    <div>
+                        <input type="button" value="*" class="operator" onclick="addToScreen('*')">
+                        <input type="button" value="7" onclick="addToScreen('7')">
+                        <input type="button" value="8" onclick="addToScreen('8')">
+                        <input type="button" value="9" onclick="addToScreen('9')">
+                    </div>
+                    <div>
+                        <input type="button" value="-" class="operator" onclick="addToScreen('-')">
+                        <input type="button" value="4" onclick="addToScreen('4')">
+                        <input type="button" value="5" onclick="addToScreen('5')">
+                        <input type="button" value="6" onclick="addToScreen('6')">
+                    </div>
+                    <div>
+                        <input type="button" value="+" class="operator" onclick="addToScreen('+')">
+                        <input type="button" value="1" onclick="addToScreen('1')">
+                        <input type="button" value="2" onclick="addToScreen('2')">
+                        <input type="button" value="3" onclick="addToScreen('3')">
+                    </div>
+                    <div>
+                        <input type="button" value="=" class="equal operator" onclick="calculate()">
+                        <input type="button" value="00" onclick="addToScreen('00')">
+                        <input type="button" value="0" onclick="addToScreen('0')">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <script>
+            let screenValue = "";
+
+            function addToScreen(value) {
+                screenValue += value;
+                document.getElementById("screen").value = screenValue;
+            }
+
+            function deleteLast() {
+                screenValue = screenValue.slice(0, -1);
+                document.getElementById("screen").value = screenValue;
+            }
+
+            function clearScreen() {
+                screenValue = "";
+                document.getElementById("screen").value = screenValue;
+            }
+
+            function calculate() {
+                try {
+                    screenValue = eval(screenValue);
+                    document.getElementById("screen").value = screenValue;
+                } catch (error) {
+                    document.getElementById("screen").value = "Error";
+                    }
+            }
+        </script>
+    </body>
+</html>
